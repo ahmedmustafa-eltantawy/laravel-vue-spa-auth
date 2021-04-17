@@ -52,4 +52,26 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new VerifyEmail);
     }
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasRole( string $role_name )
+    {
+        return $this->role()->where( 'name', $role_name )->count();
+    }
+
+    public function redirectToAfterAuthanticated( string $role_name )
+    {
+        if( $this->hasRole( 'admin' ) ){
+            return route('admin.dashboard');
+        }
+
+        return route('home');
+    }
 }

@@ -31,4 +31,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/has-verify-email', [\App\Http\Controllers\Api\VerificationController::class, 'hasVerifiedEmail'])
             ->name('email.has-verify');
 
+    Route::group([ 'middleware' => ['admin.dashboard'] ], function() {
+
+        Route::apiResource( 'statistics', \Dashboard\StatisticsController::class )
+            ->name('admin.dashboard');
+
+    });
+
 });
+
+
