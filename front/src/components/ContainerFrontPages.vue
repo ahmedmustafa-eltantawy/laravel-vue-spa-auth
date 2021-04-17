@@ -1,9 +1,7 @@
 <template>
-	<main>
-		<div class="container" :class="classes">
-			<slot name="content"></slot>
-		</div>
-	</main>
+	<div class="container" :class="classes">
+		<slot name="content"></slot>
+	</div>
 </template>
 
 <script>
