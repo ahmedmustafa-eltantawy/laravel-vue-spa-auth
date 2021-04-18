@@ -32,10 +32,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
             ->name('email.has-verify');
 
     Route::group([ 'middleware' => ['admin.dashboard'] ], function() {
-
-        Route::apiResource( 'statistics', \Dashboard\StatisticsController::class )
-            ->name('admin.dashboard');
-
+        Route::apiResource( 'statistics', \Dashboard\StatisticsController::class );
     });
 
 });
